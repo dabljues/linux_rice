@@ -8,14 +8,16 @@ cp -r --parents .config/kitty $BASEDIR/dotfiles
 cp -r --parents .config/i3 $BASEDIR/dotfiles
 cp -r --parents .config/polybar $BASEDIR/dotfiles
 cp --parents .config/Xresources $BASEDIR/dotfiles
-cp --parents -r .config/nvim/init.vim $BASEDIR/dotfiles
-cp --parents .config/compton.conf $BASEDIR/dotfiles
+[ -e .config/nvim/init.vim ] && cp --parents -r .config/nvim/init.vim $BASEDIR/dotfiles
+[ -e .config/compton.conf ] && cp --parents .config/compton.conf $BASEDIR/dotfiles
 cp --parents .config/oh-my-zsh/oh-my-zsh.sh $BASEDIR/dotfiles
 cp --parents -r .config/X11 $BASEDIR/dotfiles
 cp --parents -r .config/rofi $BASEDIR/dotfiles
 # nushell
 [ -d $BASEDIR/dotfiles/.config/nushell ] || mkdir $BASEDIR/dotfiles/.config/nushell
 cp --parents -r .config/nushell/config.nu $BASEDIR/dotfiles
+[ -d $BASEDIR/dotfiles/.config/starship ] || mkdir $BASEDIR/dotfiles/.config/starship
+cp --parents -r .config/starship/starship.toml $BASEDIR/dotfiles
 # Zsh
 [ -d $BASEDIR/dotfiles/.config/zsh ] || mkdir $BASEDIR/dotfiles/.config/zsh
 cp --parents -r .config/zsh/.zprofile $BASEDIR/dotfiles

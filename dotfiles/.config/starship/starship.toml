@@ -1,0 +1,56 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+format = """
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$rust\
+$docker_context\
+$line_break\
+$character"""
+right_format = """$python$time🕓"""
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[✗](bold red)'
+
+[directory]
+style = 'bold fg:blue'
+format = '[$path ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = false
+
+[cmd_duration]
+min_time = 500
+# style = 'fg:gray'
+format = '[$duration]($style)'
+
+[line_break]
+disabled = true
+
+[time]
+disabled = false
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[git_status]
+format = '([$conflicted$stashed$deleted$renamed$staged$modified$untracked$renamed]($style))'
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '[?$count](blue) '
+stashed = '*$count '
+modified = '[!$count](yellow) '
+staged = '[+$count](green) '
+renamed = '>>'
+deleted = '🗑'
