@@ -64,3 +64,4 @@ get_session(){
 }
 
 exec $(get_session)
+wal -R
