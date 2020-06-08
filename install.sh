@@ -14,14 +14,14 @@ echo "Installing necessary binaries"
 
 for binary in "${necessary_binaries[@]}"
 do
-   echo "Installing {$binary}"
+   echo "Installing ${binary}"
    sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
 done
 
 # pacman binaries
 echo "Installing pacman binaries"
 while read binary; do 
-    echo "Installing {$binary}"
+    echo "Installing ${binary}"
     sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
 done < $pacman_binaries_file
 
@@ -29,10 +29,12 @@ done < $pacman_binaries_file
 # AUR binaries
 echo "Installing AUR binaries"
 while read binary; do 
-    echo "Installing {$binary}"
+    echo "Installing ${binary}"
     sudo yay --noconfirm -S $binary >/dev/null 2>&1
 done < $aur_binaries_file
 
+# pywal
+wal -i images/ocean.jpg
 
 # Copying dotfiles
 
@@ -41,7 +43,8 @@ echo "Copying dotfiles"
 yes | cp -rfT dotfiles /home/$USER >/dev/null 2>&1
 
 # Most important command! Get rid of the beep!
-systembeepoff
+rmmod pcspkr
+echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh $USER >/dev/null 2>&1

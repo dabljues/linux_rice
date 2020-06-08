@@ -51,8 +51,16 @@ foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
+color1 = ${xrdb:color1:#ff5555}
+color2 = ${xrdb:color4:#ff5555}
+color3 = ${xrdb:color7:#ff5555}
 
 [bar/bar]
+
+enable-ipc=true
+height = 35
+width = 100%
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
