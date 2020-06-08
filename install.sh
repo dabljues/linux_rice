@@ -2,6 +2,10 @@ necessary_binaries=( yay python-pywal i3-gaps git zsh )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
+# Copying env file
+cp -f dotfiles/.config/env ~/.config/env
+source ~/.config/env
+
 # System update
 
 echo "Updating the system!"
@@ -47,5 +51,36 @@ rmmod pcspkr
 echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 # Make zsh the default shell for the user.
-chsh -s /bin/zsh $USER >/dev/null 2>&1
+sudo chsh -s /bin/zsh $USER >/dev/null 2>&1
 sudo -u "$USER" mkdir -p "/home/$USER/.cache/zsh/"
+
+mv ~/.dir_colors ~/.config/dircolors
+source ~/.zshenv
+
+# Home clean-up
+mkdir -p $XDG_DATA_HOME
+mkdir -p $XDG_DATA_HOME/bash
+mkdir -p $XDG_CONFIG_HOME/git
+
+mv ~/.gnupg $XDG_DATA_HOME
+
+mkdir -p ~/.config/gtk-2.0
+mv ~/.gtkrc-2.0 $GTK2_RC_FILES
+
+mkdir -p ~/.config/vim
+mv ~/.vim* ~/.config/vim
+
+mv ~/.Xauthority ~/.config/Xauthority
+mv ~/.mozilla ~/.config/mozilla
+
+mv ~/.thumbnails ~/.config/thumbnails
+mv ~/.urxvt ~/.config/urxvt
+
+mv ~/.gitconfig ~/.config/git/gitconfig
+
+mv ~/.Xclients ~/.config/Xclients
+
+rm -rf ~/.dmenu*
+rm ~/.profile
+rm ~/.bash*
+rm -rf ~/.moc
