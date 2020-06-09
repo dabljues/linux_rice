@@ -47,20 +47,22 @@ echo "Copying dotfiles"
 yes | cp -rfT dotfiles /home/$USER >/dev/null 2>&1
 
 # Most important command! Get rid of the beep!
-rmmod pcspkr
-echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+sudo rmmod pcspkr
+sudo echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+
+mkdir -p $XDG_CONFIG_HOME/zsh
+sh install_zsh.sh --unattended
 
 # Make zsh the default shell for the user.
 sudo chsh -s /bin/zsh $USER >/dev/null 2>&1
 sudo -u "$USER" mkdir -p "/home/$USER/.cache/zsh/"
 
-mv ~/.dir_colors ~/.config/dircolors
-source ~/.zshenv
-
 # Home clean-up
 mkdir -p $XDG_DATA_HOME
-mkdir -p $XDG_DATA_HOME/bash
+mkdir -p $XDG_DATA_HOME/zsh
 mkdir -p $XDG_CONFIG_HOME/git
+mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+
 
 mv ~/.gnupg $XDG_DATA_HOME
 
@@ -76,9 +78,10 @@ mv ~/.mozilla ~/.config/mozilla
 mv ~/.thumbnails ~/.config/thumbnails
 mv ~/.urxvt ~/.config/urxvt
 
-mv ~/.gitconfig ~/.config/git/gitconfig
+mv ~/.gitconfig ~/.config/git/.gitconfig
 
 mv ~/.Xclients ~/.config/Xclients
+mv ~/.dir_colors ~/.config/dircolors
 
 rm -rf ~/.dmenu*
 rm ~/.profile

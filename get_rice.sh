@@ -7,6 +7,8 @@ cp -r ~/.config/i3 dotfiles/.config
 cp -r ~/.config/polybar dotfiles/.config
 cp ~/.config/env dotfiles/.config
 cp ~/.config/Xresources dotfiles/.config
+cp -r ~/.config/zsh dotfiles/.config
+cp -r ~/.config/vim dotfiles/.config
 # Themes
 cp -r ~/.config/themes/* dotfiles/themes
 # Home
