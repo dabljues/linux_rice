@@ -287,6 +287,9 @@ mode "$mode_gaps_outer" {
 
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
+# compton
+exec --no-startup-id picom
+
 # Hotkeys
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)

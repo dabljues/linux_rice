@@ -4,7 +4,17 @@ aur_binaries_file="lists/aur_progs.txt"
 
 # Copying env file
 cp -f dotfiles/.config/env ~/.config/env
+mv ~/.dir_colors ~/.config/dircolors
 source ~/.config/env
+
+mkdir -p $XDG_DATA_HOME
+
+mkdir -p $XDG_CONFIG_HOME/git
+mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+
+mkdir -p $XDG_CONFIG_HOME/zsh
+mkdir -p $XDG_CONFIG_HOME/oh-my-zsh
+
 
 # System update
 
@@ -40,30 +50,34 @@ done < $aur_binaries_file
 # pywal
 wal -i images/ocean.jpg
 
+# oh-my-zsh
+
+mkdir -p $XDG_CONFIG_HOME/zsh
+sh install_zsh.sh --unattended
+
 # Copying dotfiles
 
 echo "Copying dotfiles"
 
+rm -rf ~/.dmenu*
+rm ~/.profile
+rm ~/.bash*
+rm -rf ~/.moc
+rm ~/.zshrc
+rm ~/.Xresources
+rm ~/.xsession*
+rm -rf ~/.i3
 yes | cp -rfT dotfiles /home/$USER >/dev/null 2>&1
 
 # Most important command! Get rid of the beep!
 sudo rmmod pcspkr
 sudo echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
-mkdir -p $XDG_CONFIG_HOME/zsh
-sh install_zsh.sh --unattended
-
 # Make zsh the default shell for the user.
 sudo chsh -s /bin/zsh $USER >/dev/null 2>&1
-sudo -u "$USER" mkdir -p "/home/$USER/.cache/zsh/"
+sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 # Home clean-up
-mkdir -p $XDG_DATA_HOME
-mkdir -p $XDG_DATA_HOME/zsh
-mkdir -p $XDG_CONFIG_HOME/git
-mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
-
-
 mv ~/.gnupg $XDG_DATA_HOME
 
 mkdir -p ~/.config/gtk-2.0
@@ -73,17 +87,11 @@ mkdir -p ~/.config/vim
 mv ~/.vim* ~/.config/vim
 
 mv ~/.Xauthority ~/.config/Xauthority
-mv ~/.mozilla ~/.config/mozilla
+#mv ~/.mozilla ~/.config/mozilla
 
 mv ~/.thumbnails ~/.config/thumbnails
 mv ~/.urxvt ~/.config/urxvt
 
-mv ~/.gitconfig ~/.config/git/.gitconfig
+mv ~/.gitconfig ~/.config/git/config
 
 mv ~/.Xclients ~/.config/Xclients
-mv ~/.dir_colors ~/.config/dircolors
-
-rm -rf ~/.dmenu*
-rm ~/.profile
-rm ~/.bash*
-rm -rf ~/.moc
