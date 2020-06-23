@@ -1,3 +1,5 @@
+name="dabljues"
+
 necessary_binaries=( yay python-pywal i3-gaps git zsh )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
@@ -13,8 +15,6 @@ mkdir -p $XDG_CONFIG_HOME/git
 mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
 
 mkdir -p $XDG_CONFIG_HOME/zsh
-mkdir -p $XDG_CONFIG_HOME/oh-my-zsh
-
 
 # System update
 
@@ -74,7 +74,7 @@ sudo rmmod pcspkr
 sudo echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 # Make zsh the default shell for the user.
-sudo chsh -s /bin/zsh $USER >/dev/null 2>&1
+sudo chsh -s $( which zsh ) $USER >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 # Home clean-up
