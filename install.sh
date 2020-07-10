@@ -1,6 +1,6 @@
 name="dabljues"
 
-necessary_binaries=( yay python-pywal i3-gaps git zsh )
+necessary_binaries=( yay python-pywal i3-gaps git zsh pulseaudio)
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
@@ -51,7 +51,7 @@ done < $aur_binaries_file
 wal -i images/ocean.jpg
 
 # oh-my-zsh
-
+rm ~/.zshrc
 mkdir -p $XDG_CONFIG_HOME/zsh
 sh install_zsh.sh --unattended
 
