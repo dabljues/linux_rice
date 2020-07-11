@@ -53,7 +53,13 @@ wal -i images/ocean.jpg
 # oh-my-zsh
 rm ~/.zshrc
 mkdir -p $XDG_CONFIG_HOME/zsh
+curl -Lo install_zsh.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+# replace paths in oh-my-zsh installer
+sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/zsh\/.oh-my-zsh}/g' install.sh
+sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install.sh
 sh install_zsh.sh --unattended
+rm install_zsh.sh
+
 
 # Copying dotfiles
 
