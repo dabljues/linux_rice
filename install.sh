@@ -58,7 +58,7 @@ done < $pacman_binaries_file
 echo "Installing AUR binaries"
 while read binary; do 
     echo "Installing ${binary}"
-    sudo yay --noconfirm -S $binary >/dev/null 2>&1
+    yay --noconfirm -S $binary >/dev/null 2>&1
 done < $aur_binaries_file
 
 # pywal
