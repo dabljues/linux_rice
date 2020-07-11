@@ -2,7 +2,6 @@ chromium
 kitty
 code
 ttf-material-icons
-polybar
 ttf-font-awesome
 rofi
 lsd
