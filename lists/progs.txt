@@ -8,6 +8,5 @@ rofi
 lsd
 flameshot
 ttf-hack
-python-pywal
 pidgin-libnotify
 pidgin

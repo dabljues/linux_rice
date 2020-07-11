@@ -1,6 +1,6 @@
 name="dabljues"
 
-necessary_binaries=( yay python-pywal i3-gaps git zsh pulseaudio)
+necessary_binaries=( yay python-pywal i3-gaps git zsh pulseaudio )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
@@ -55,10 +55,10 @@ rm ~/.zshrc
 mkdir -p $XDG_CONFIG_HOME/zsh
 curl -Lo install_zsh.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 # replace paths in oh-my-zsh installer
-sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/zsh\/.oh-my-zsh}/g' install.sh
-sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install.sh
+sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/oh-my-zsh}/g' install_zsh.sh
+sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install_zsh.sh
 sh install_zsh.sh --unattended
-rm install_zsh.sh
+# rm install_zsh.sh
 
 
 # Copying dotfiles
