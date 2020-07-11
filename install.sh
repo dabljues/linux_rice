@@ -1,3 +1,7 @@
+# TODO:
+# fix vim (VIMINIT)
+# add some user scripts
+
 name="dabljues"
 
 necessary_binaries=( yay python-pywal i3-gaps git zsh pulseaudio )
