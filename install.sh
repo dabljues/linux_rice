@@ -101,3 +101,7 @@ mv ~/.urxvt ~/.config/urxvt
 mv ~/.gitconfig ~/.config/git/config
 
 mv ~/.Xclients ~/.config/Xclients
+
+# Restart pulseaudio
+killall pulseaudio
+sudo -u "$name" pulseaudio --start
