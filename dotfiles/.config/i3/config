@@ -285,7 +285,7 @@ mode "$mode_gaps_outer" {
 
 # Polybar
 
-exec --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # compton
 exec --no-startup-id picom
