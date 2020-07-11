@@ -20,8 +20,8 @@ mkdir -p $XDG_CONFIG_HOME/zsh
 
 echo "Updating the system!"
 
-sudo pacman-mirrors -g >/dev/null 2>&1
-sudo pacman -Syyu --noconfirm >/dev/null 2>&1
+#sudo pacman-mirrors -g >/dev/null 2>&1
+#sudo pacman -Syyu --noconfirm >/dev/null 2>&1
 
 # Necessary binaries
 echo "Installing necessary binaries"
@@ -58,7 +58,7 @@ curl -Lo install_zsh.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/oh-my-zsh}/g' install_zsh.sh
 sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install_zsh.sh
 sh install_zsh.sh --unattended
-# rm install_zsh.sh
+rm install_zsh.sh
 
 
 # Copying dotfiles
