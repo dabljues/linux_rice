@@ -10,7 +10,11 @@ aur_binaries_file="lists/aur_progs.txt"
 
 # Copying env file
 cp -f dotfiles/.config/env ~/.config/env
-[ -d ~/.dir_colors ] && mv ~/.dir_colors ~/.config/dircolors
+if [[ -d ~/.dir_colors ]] ; then
+    mv ~/.dir_colors ~/.config/dircolors
+else
+    mkdir ~/.config/dircolors
+fi
 source ~/.config/env
 
 mkdir -p $XDG_DATA_HOME
