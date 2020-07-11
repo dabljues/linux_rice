@@ -83,13 +83,13 @@ rm install_zsh.sh
 
 echo "Copying dotfiles"
 
-rm -rf ~/.dmenu*
+rm -rf ~/.dmenu* > /dev/null 2>&1
 [ -f ~/.profile ] && rm ~/.profile
-rm ~/.bash*
+rm ~/.bash* > /dev/null 2>&1
 [ -d ~/.moc ] && rm -rf ~/.moc
 [ -f ~/.zshrc ] && rm ~/.zshrc
 [ -f ~/.Xresources ] && rm ~/.Xresources
-rm ~/.xsession*
+rm ~/.xsession* > /dev/null 2>&1
 [ -d ~/.i3 ] && rm -rf ~/.i3
 yes | cp -rfT dotfiles /home/$USER >/dev/null 2>&1
 
@@ -102,13 +102,13 @@ sudo chsh -s $( which zsh ) $USER >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 # Home clean-up
-[ -f ~/.zshrc ] && mv ~/.gnupg $XDG_DATA_HOME
+[ -f ~/.gnupg ] && mv ~/.gnupg $XDG_DATA_HOME
 
 mkdir -p ~/.config/gtk-2.0
 [ -d ~/.gtkrc-2.0 ] && mv ~/.gtkrc-2.0 $GTK2_RC_FILES
 
 mkdir -p ~/.config/vim
-mv ~/.vim* ~/.config/vim
+mv ~/.vim* ~/.config/vim > /dev/null 2>&1
 
 [ -f ~/.Xauthority ] && mv ~/.Xauthority ~/.config/Xauthority
 #mv ~/.mozilla ~/.config/mozilla
@@ -121,5 +121,5 @@ mv ~/.vim* ~/.config/vim
 [ -d ~/.Xclients ] && mv ~/.Xclients ~/.config/Xclients
 
 # Restart pulseaudio
-killall pulseaudio
+killall pulseaudio > /dev/null 2>&1
 sudo -u "$name" pulseaudio --start
