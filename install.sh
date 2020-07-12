@@ -4,7 +4,7 @@
 
 name="dabljues"
 
-necessary_binaries=( python-pywal picom i3-gaps git zsh pulseaudio )
+necessary_binaries=( python-pywal picom i3-gaps xorg xorg-xinit zsh pulseaudio )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
