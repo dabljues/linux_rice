@@ -10,3 +10,6 @@ ttf-hack
 pidgin-libnotify
 pidgin
 openssh
+neovim
+dunst
+neofetch

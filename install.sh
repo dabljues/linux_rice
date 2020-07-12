@@ -1,5 +1,5 @@
 # TODO:
-# fix vim (VIMINIT)
+# silence commands (yay, zsh)
 # add some user scripts
 
 name="dabljues"
@@ -8,19 +8,22 @@ necessary_binaries=( python-pywal picom i3-gaps git zsh pulseaudio )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
-# Copying env file
-cp -f dotfiles/.config/env ~/.config/env
+# dir colors (zsh? )
 if [[ -d ~/.dir_colors ]] ; then
     mv ~/.dir_colors ~/.config/dircolors
 else
     mkdir ~/.config/dircolors
 fi
-source ~/.config/env
+
+# create .local/bin
+mkdir -p ~/.local/bin
+
+# source all the necessary variables
+source dotfiles/.zprofile
 
 mkdir -p $XDG_DATA_HOME
 
 mkdir -p $XDG_CONFIG_HOME/git
-mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
 
 mkdir -p $XDG_CONFIG_HOME/zsh
 
@@ -103,9 +106,6 @@ sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
 mkdir -p ~/.config/gtk-2.0
 [ -d ~/.gtkrc-2.0 ] && mv ~/.gtkrc-2.0 $GTK2_RC_FILES
-
-mkdir -p ~/.config/vim
-mv ~/.vim* ~/.config/vim > /dev/null 2>&1
 
 [ -f ~/.Xauthority ] && mv ~/.Xauthority ~/.config/Xauthority
 #mv ~/.mozilla ~/.config/mozilla

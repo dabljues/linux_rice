@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/zsh
+
+# Adds `~/.local/bin` to $PATH
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
 
 export EDITOR="nvim"
 export TERMINAL="kitty"
@@ -17,5 +20,6 @@ export HISTFILE="$XDG_CACHE_HOME"/zsh/history
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 eval $(dircolors "$XDG_CONFIG_HOME"/dircolors)
