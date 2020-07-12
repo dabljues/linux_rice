@@ -9,3 +9,4 @@ flameshot
 ttf-hack
 pidgin-libnotify
 pidgin
+openssh

@@ -65,9 +65,6 @@ while read binary; do
     yay --noconfirm -S $binary >/dev/null 2>&1
 done < $aur_binaries_file
 
-# pywal
-wal -i images/ocean.jpg
-
 # oh-my-zsh
 [ -f ~/.zshrc ] && rm ~/.zshrc
 mkdir -p $XDG_CONFIG_HOME/zsh
@@ -116,7 +113,7 @@ mv ~/.vim* ~/.config/vim > /dev/null 2>&1
 [ -d ~/.thumbnails ] && mv ~/.thumbnails ~/.config/thumbnails
 [ -d ~/.urxvt ] && mv ~/.urxvt ~/.config/urxvt
 
-[ -d ~/.gitconfig ] && mv ~/.gitconfig ~/.config/git/config
+[ -f ~/.gitconfig ] && mv ~/.gitconfig ~/.config/git/config
 
 [ -d ~/.Xclients ] && mv ~/.Xclients ~/.config/Xclients
 
