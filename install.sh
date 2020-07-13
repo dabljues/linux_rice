@@ -12,7 +12,7 @@ aur_binaries_file="lists/aur_progs.txt"
 if [[ -d ~/.dir_colors ]] ; then
     mv ~/.dir_colors ~/.config/dircolors
 else
-    mkdir ~/.config/dircolors
+    mkdir -p ~/.config/dircolors
 fi
 
 # create .local/bin
@@ -45,20 +45,24 @@ echo "Installing yay"
 
 [ -z "$(command -v yay)" ] && git clone https://aur.archlinux.org/yay.git > /dev/null 2>&1 && cd yay && sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1 && cd .. && rm -rf yay
 
+# Remove conflicting packages
+
+sudo pacman --noconfirm -Rns i3 > /dev/null 2>&1
+
 # Necessary binaries
 echo "Installing necessary binaries"
 
 for binary in "${necessary_binaries[@]}"
 do
    echo "Installing ${binary}"
-   sudo pacman --noconfirm --needed --overwrite -S $binary >/dev/null 2>&1
+   sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
 done
 
 # pacman binaries
 echo "Installing pacman binaries"
 while read binary; do 
     echo "Installing ${binary}"
-    sudo pacman --noconfirm --needed --overwrite -S $binary >/dev/null 2>&1
+    sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
 done < $pacman_binaries_file
 
 
