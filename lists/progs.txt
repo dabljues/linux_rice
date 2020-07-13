@@ -13,3 +13,4 @@ openssh
 neovim
 dunst
 neofetch
+feh

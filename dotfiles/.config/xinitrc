@@ -64,5 +64,4 @@ get_session(){
 }
 
 . ~/.xprofile
-wal -R
 exec dbus-launch i3

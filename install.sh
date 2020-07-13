@@ -125,3 +125,7 @@ mkdir -p ~/.config/gtk-2.0
 # Restart pulseaudio
 killall pulseaudio > /dev/null 2>&1
 sudo -u "$name" pulseaudio --start
+
+# Generate pywal theme
+
+wal -i images/ocean.jpg
