@@ -1,16 +1,12 @@
 chromium
-kitty
 code
 ttf-material-icons
 ttf-font-awesome
-rofi
-lsd
 flameshot
 ttf-hack
 pidgin-libnotify
 pidgin
 openssh
-neovim
 dunst
 neofetch
-feh
+tree

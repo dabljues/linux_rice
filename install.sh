@@ -4,7 +4,7 @@
 
 name="dabljues"
 
-necessary_binaries=( python-pywal picom i3-gaps xorg xorg-xinit zsh pulseaudio )
+necessary_binaries=( i3-gaps xorg xorg-xinit zsh pulseaudio python-pywal picom feh kitty neovim rofi lsd )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
 
@@ -128,4 +128,4 @@ sudo -u "$name" pulseaudio --start
 
 # Generate pywal theme
 
-wal -i images/ocean.jpg
+wal -i images/ocean.jpg > /dev/null 2>&1
