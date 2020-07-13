@@ -33,6 +33,7 @@ echo "Updating the system!"
 
 #sudo pacman-mirrors -g >/dev/null 2>&1
 #sudo pacman -Syyu --noconfirm >/dev/null 2>&1
+sudo pacman -Sy
 
 # Installing git
 
@@ -50,14 +51,14 @@ echo "Installing necessary binaries"
 for binary in "${necessary_binaries[@]}"
 do
    echo "Installing ${binary}"
-   sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
+   sudo pacman --noconfirm --needed --overwrite -S $binary >/dev/null 2>&1
 done
 
 # pacman binaries
 echo "Installing pacman binaries"
 while read binary; do 
     echo "Installing ${binary}"
-    sudo pacman --noconfirm --needed -S $binary >/dev/null 2>&1
+    sudo pacman --noconfirm --needed --overwrite -S $binary >/dev/null 2>&1
 done < $pacman_binaries_file
 
 
@@ -71,11 +72,11 @@ done < $aur_binaries_file
 # oh-my-zsh
 [ -f ~/.zshrc ] && rm ~/.zshrc
 mkdir -p $XDG_CONFIG_HOME/zsh
-curl -Lo install_zsh.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /dev/null 2&1
+curl -Lo install_zsh.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /dev/null 2>&1
 # replace paths in oh-my-zsh installer
 sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/oh-my-zsh}/g' install_zsh.sh
 sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install_zsh.sh
-sh install_zsh.sh --unattended > /dev/null 2&1
+sh install_zsh.sh --unattended > /dev/null 2>&1
 rm install_zsh.sh
 
 
