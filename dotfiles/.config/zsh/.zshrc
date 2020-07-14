@@ -99,3 +99,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
 alias vi="nvim"
+
+# Configs editing
+alias ci3="$EDITOR ~/.config/i3/config"
+alias czh="$EDITOR ~/.config/zsh/.zshrc"
+alias ls="lsd"
+alias l="ls -l"
+alias la="ls -a"
+alias lla="ls -la"
+alias lt="ls --tree"
