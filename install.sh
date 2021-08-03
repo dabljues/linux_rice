@@ -43,7 +43,8 @@ sudo pacman --noconfirm --needed -S git >/dev/null 2>&1
 
 echo "Installing yay"
 
-[ -z "$(command -v yay)" ] && git clone https://aur.archlinux.org/yay.git > /dev/null 2>&1 && cd yay && sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1 && cd .. && rm -rf yay
+# [ -z "$(command -v yay)" ] && git clone https://aur.archlinux.org/yay.git > /dev/null 2>&1 && cd yay && sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1 && cd .. && rm -rf yay
+sudo pacman --noconfirm --needed -S yay >/dev/null 2>&1
 
 # Remove conflicting packages
 
@@ -82,6 +83,12 @@ sed -i 's/ZSH=${ZSH:-~\/.oh-my-zsh}/ZSH=${ZSH:-~\/.config\/oh-my-zsh}/g' install
 sed -i 's/~\/.zshrc/~\/.config\/zsh\/.zshrc/g' install_zsh.sh
 sh install_zsh.sh --unattended > /dev/null 2>&1
 rm install_zsh.sh
+# plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 
 
 # Copying dotfiles
@@ -125,6 +132,8 @@ mkdir -p ~/.config/gtk-2.0
 # Restart pulseaudio
 killall pulseaudio > /dev/null 2>&1
 sudo -u "$name" pulseaudio --start
+
+# TODO: Remove all DMs (like lightdmg) if installed
 
 # Generate pywal theme
 
