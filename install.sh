@@ -43,8 +43,8 @@ sudo pacman --noconfirm --needed -S git >/dev/null 2>&1
 
 echo "Installing yay"
 
-# [ -z "$(command -v yay)" ] && git clone https://aur.archlinux.org/yay.git > /dev/null 2>&1 && cd yay && sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1 && cd .. && rm -rf yay
-sudo pacman --noconfirm --needed -S yay >/dev/null 2>&1
+[ -z "$(command -v yay)" ] && git clone https://aur.archlinux.org/yay.git > /dev/null 2>&1 && cd yay && sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1 && cd .. && rm -rf yay
+# sudo pacman --noconfirm --needed -S yay >/dev/null 2>&1
 
 # Remove conflicting packages
 
