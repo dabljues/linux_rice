@@ -4,8 +4,6 @@ ttf-material-icons
 ttf-font-awesome
 flameshot
 ttf-hack
-pidgin-libnotify
-pidgin
 openssh
 dunst
 neofetch
