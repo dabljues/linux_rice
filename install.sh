@@ -2,7 +2,7 @@
 # silence commands (yay, zsh)
 # add some user scripts
 
-name="dabljues"
+name=$USER
 
 necessary_binaries=( i3-gaps xorg xorg-xinit zsh pulseaudio python-pywal picom feh kitty neovim rofi lsd )
 pacman_binaries_file="lists/progs.txt"
