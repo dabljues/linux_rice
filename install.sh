@@ -19,7 +19,7 @@ fi
 mkdir -p ~/.local/bin
 
 # source all the necessary variables
-source dotfiles/.zprofile
+source dotfiles/.config/zsh/.zshrc
 
 mkdir -p $XDG_DATA_HOME
 
