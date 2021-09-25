@@ -55,37 +55,42 @@ color1 = ${xrdb:color1:#ff5555}
 color2 = ${xrdb:color4:#ff5555}
 color3 = ${xrdb:color7:#ff5555}
 
-[bar/bar]
-
-enable-ipc=true
-height = 35
+[bar/i3]
+margin-top = 0
+margin-bottom = 0
 width = 100%
+height = 40
+enable-ipc=true
+monitor = ${env:MONITOR:}
 bottom = true
+separator = |
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 2
+fixed-center = true
 
-font-0=Iosevka:size=10;3
-font-1=Font Awesome 5 Free Solid:size=8;3
-font-2=Font Awesome 5 Free Regular:size=8;3
-font-3=Font Awesome 5 Brands:size=8;3
-font-4=font\-logos:size=11;3
-font-5=IPAGothic:size=11:antialias=true;3
+font-0 = "DejaVu Sans Mono:pixelsize=15;3"
+font-1 = "Material\-Design\-Iconic\-Font:size=13;4"
 
-modules-left = launcher i3 
-; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
-;modules-center = previous playpause next spotify
-; Mpd
-modules-center =
-modules-right = cpu memory time pulseaudio power
+modules-left = i3
+modules-right = pulseaudio xkeyboard memory cpu battery date
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+tray-position = right
+tray-padding = 2
 
-wm-restack = i3
-override-redirect = false
+padding = 0
+
+; Number of spaces to add before/after each module
+; Individual side values can be defined using:
+;   module-margin-{left,right}
+module-margin-left = 1
+module-margin-right = 1
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -93,283 +98,256 @@ override-redirect = false
 ; | | | | | | (_) | (_| | |_| | |  __/\__ \
 ; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
                                          
-[module/launcher]
-type=custom/text
-content = 
-content-font=5
-content-foreground=${colors.color1}
-content-padding=2
-click-left=launcher
-;The script above is to be found here : https://github.com/ngynLk/scripts
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:40:...%
-label-color1 = ${colors.color1} 
-label-background = ${colors.background} 
-label-padding = 2
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
 
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
-format-foreground = ${colors.color1}
-format-background = ${colors.background}
 index-sort = true
+wrapping-scroll = false
 
-enable-click = true
-reverse-scroll = false
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
 
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-overline = ${colors.color1}
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
+; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-padding = 2
 
-label-urgent = 
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-label-urgent-foreground = ${colors.background}
-label-urgent-background = ${colors.color1}
-label-urgent-overline = ${colors.background}
-label-urgent-font = 2
 
-;ws-icon-0 = 1;
-;ws-icon-1 = 2;
-;ws-icon-2 = 3;
-;ws-icon-9 = 10;
-;ws-icon-default = 
-
-[module/power]
-type = custom/text
-content = 
-content-foreground = ${colors.color3}
-click-left = powermenu
-;The script above is to be found here : https://github.com/ngynLk/scripts
-content-padding = 2
-
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-format-online = <icon-prev> <toggle> <icon-next> <label-song> <label-time>
-format-online-padding = 2
-format-online-foreground = ${colors.color2}
-format-online-background = ${colors.background}
-label-song-foreground = ${colors.color2}
-label-song-background = ${colors.background}
-label-song-padding = 2
-label-time-foreground = ${colors.color2}
-label-time-background = ${colors.background}
-label-time-padding = 1
-
-format-offline = <label-offline>
-label-offline =  offline
-format-offline-padding = 2
-format-offline-foreground = ${colors.color2}
-format-offline-background = ${colors.background}
-
-bar-progress-width = 35
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-
-label-song-maxlen = 75
-label-song-ellipsis = true
+; Separator in between workspaces
+; label-separator = |
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = " "
-format-padding = 2
-format-foreground = ${colors.color3}
-label = %percentage%%
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+;;format = <label> <ramp-coreload>
+format = <label>
+format-prefix = 
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = " %percentage%%"
+
+; Spacing between individual per-core ramps
+;;ramp-coreload-spacing = 1
+;;ramp-coreload-0 = ${cpu.load0}
+;;ramp-coreload-1 = ${cpu.load1}
+
+;;ramp-load-0 = ${cpu.load0}
+;;ramp-load-1 = ${cpu.load1}
 
 [module/memory]
 type = internal/memory
-interval = 2
-format-padding = 2
-format-prefix = " "
-format-foreground = ${colors.color3}
-label = %percentage_used%%
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label>
+format-prefix =  
+label = " %percentage_used%%"
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
 
 [module/wlan]
 type = internal/network
-interface = wlx0013eff2094e
+interface = net1
 interval = 3.0
 
-format-connected =  <label-connected>
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
 label-connected = %essid%
-label-connected-color1 = ${colors.color1}
 
-;format-disconnected =
-format-disconnected = <label-disconnected>
-label-disconnected = %ifname% disconnected
-label-disconnected-color1 = ${colors.color1}
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-color1 = ${colors.color1}
+ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = eno1
+interface = enp7s0f4u1u1u2
 interval = 3.0
 
+format-connected-underline = #55aa55
 format-connected-prefix = " "
-format-connected-prefix-color1 = ${colors.color1-alt}
+format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-color1 = ${colors.color1-alt}
+;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/time]
+[module/date]
 type = internal/date
-interval = 10
-format-margin = 0
 
-time = "%H:%M"
-date = "%d %b"
+; Seconds to sleep between updates
+interval = 1.0
 
-label =  %date%, %time%
-label-foreground = ${colors.color3}
-label-background = ${colors.background}
-label-padding = 2
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+;;date = %Y-%m-%d%
 
+; Optional time format
+time = " %T %d %b %Y"
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+;;date-alt = %A, %d %B %Y
+time-alt = " %a, %d %b %Y"
+
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = %time%
+
+;hidden = true
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-margin = 1
-format-volume = <ramp-volume><label-volume>
-label-volume = %percentage:3:3%%
-format-volume-foreground = ${colors.color3}
-format-volume-background = ${colors.background}
-format-volume-padding = 2
-use-ui-max = false
-interval = 5
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
 
-ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
+label-muted = 🔇 muted
+label-muted-foreground = #666
 
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
-label-muted = ""   
-label-muted-background = ${colors.background}
-label-muted-foreground = ${colors.color3}
-label-muted-padding = 2
+[module/battery]
+type = internal/battery
+full-at = 98
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
 
-format =  <label>
-format-warn = <ramp> <label-warn>
+label-charging = %percentage%%
+label-discharging = %percentage%%
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-color1 = ${colors.secondary}
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
 
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-format-margin = 0
-format-background = ${colors.background}
-format-foreground = ${colors.color3}
-format-padding = 2
-
-label-open = 
-label-close = 
-label-separator = |
-
-; reboot
-menu-0-1 = 
-menu-0-1-exec = menu-open-2
-; poweroff
-menu-0-2 = 
-menu-0-2-exec = menu-open-3
-; logout
-menu-0-0 = 
-menu-0-0-exec = menu-open-1
-
-menu-2-0 = 
-menu-2-0-exec = reboot
-
-menu-3-0 = 
-menu-3-0-exec = poweroff
-
-menu-1-0 = 
-menu-1-0-exec = i3-msg exit || openbox --exit
-
-;Spotify modules
-
-[module/previous]
-type = custom/script
-format-font = 2
-format-padding = 2
-format-foreground = ${colors.color2}
-exec = echo ""
-exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-
-
-[module/next]
-type = custom/script
-format-font = 2
-format-padding = 2
-format-foreground = ${colors.color2}
-exec = echo ""
-exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-[module/playpause]
-type = custom/ipc
-format-font = 2
-format-padding = 0
-format-foreground = ${colors.color2}
-; Default
-hook-0 = echo ""
-; Playing
-hook-1 = echo ""
-; Paused
-hook-2 = echo ""
-initial = 2
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-
-
-[module/spotify]
-type = custom/ipc
-format-foreground = ${colors.color2}
-; Default
-hook-0 = echo ""
-; Playing/paused show song name and artist
-hook-1 = python3 ~/.scripts/spotify/spotify_status.py
-initial = 2
-click-left = i3-msg '[class="Spotify"] focus'
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
 
 [settings]
 screenchange-reload = true
@@ -377,11 +355,10 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = true
+;pseudo-transparency = false
 
 [global/wm]
-margin-top = 0
-margin-bottom = 0
+margin-top = 5
+margin-bottom = 5
 
 ; vim:ft=dosini
-                      
