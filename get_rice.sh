@@ -12,7 +12,7 @@ cp --parents -r .config/nvim/init.vim $BASEDIR/dotfiles
 cp --parents .config/compton.conf $BASEDIR/dotfiles
 cp --parents .config/oh-my-zsh/oh-my-zsh.sh $BASEDIR/dotfiles
 cp --parents -r .config/X11 $BASEDIR/dotfiles
-cp --parents -r .config/rofi $BASEDIR/dotfile
+cp --parents -r .config/rofi $BASEDIR/dotfiles
 # Zsh
 [ -d $BASEDIR/dotfiles/.config/zsh ] || mkdir $BASEDIR/dotfiles/.config/zsh
 cp --parents -r .config/zsh/.zprofile $BASEDIR/dotfiles
