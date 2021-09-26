@@ -1,5 +1,4 @@
 chromium
-code
 ttf-material-icons
 ttf-font-awesome
 flameshot
