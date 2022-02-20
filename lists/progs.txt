@@ -7,3 +7,4 @@ openssh
 dunst
 neofetch
 tree
+pyenv

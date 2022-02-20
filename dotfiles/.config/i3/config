@@ -298,7 +298,7 @@ bindsym $mod+Shift+q kill
 # Material theme
 # bindsym $mod+d exec --no-startup-id rofi -show run -theme ~/.config/themes/material.rasi 
 # pywal
-bindsym $mod+d exec --no-startup-id rofi -show run -theme ~/.cache/wal/colors-rofi-dark.rasi
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 
 # launch categorized menu
