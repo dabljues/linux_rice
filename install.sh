@@ -7,6 +7,7 @@ name=$USER
 necessary_binaries=( i3-gaps xorg xorg-xinit zsh pulseaudio python-pywal picom feh kitty neovim rofi lsd )
 pacman_binaries_file="lists/progs.txt"
 aur_binaries_file="lists/aur_progs.txt"
+python_binaries_file="lists/python_progs.txt"
 
 # dir colors (zsh? )
 if [[ -d ~/.dir_colors ]] ; then
@@ -73,6 +74,17 @@ while read binary; do
     echo "Installing ${binary}"
     yay --noconfirm -S $binary >/dev/null 2>&1
 done < $aur_binaries_file
+
+pip install pipx
+pipx ensurepath
+
+# Python binaries
+echo "Installing Python binaries"
+while read binary; do 
+    echo "Installing ${binary}"
+    pipx install $binary >/dev/null 2>&1
+done < $python_binaries_file
+
 
 # oh-my-zsh
 [ -f ~/.zshrc ] && rm ~/.zshrc
