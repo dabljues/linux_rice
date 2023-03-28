@@ -8,3 +8,6 @@ dunst
 neofetch
 tree
 pyenv
+# Use this and add it as a service (enable + start) to sort the mirrors
+# --sort rate
+reflector
