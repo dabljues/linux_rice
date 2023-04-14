@@ -13,7 +13,6 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -121,10 +120,23 @@ alias lla="ls -la"
 alias lt="ls --tree"
 alias startx="startx $XINITRC"
 
+# Git
+alias ga="git add"
+alias gs="git status"
+alias gcp="git cherry-pick"
+alias gdf="git diff HEAD~1"
+alias gl="git log"
+alias rbc="git rebase --continue"
+alias rbi="git rebase -i"
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 eval "$(pyenv init -)"
 
-[[ -f "$ZDOTDIR"/.work ]] && source "$ZDOTDIR"/.work
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+eval "$(direnv hook zsh)"
+
+[[ -f "$ZDOTDIR"/.work ]] && source "$ZDOTDIR"/.work

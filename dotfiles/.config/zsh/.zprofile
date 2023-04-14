@@ -12,6 +12,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtrkrc-2.0"
 export INPUTRC="$HOME/.config/inputrc"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
@@ -40,3 +41,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
+
+# Docker
+export DOCKER_BUILDKIT=1
