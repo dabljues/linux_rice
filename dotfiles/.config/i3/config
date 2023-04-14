@@ -112,6 +112,7 @@ mode "resize" {
 
 # Autostart applications
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -191,6 +192,7 @@ client.background       $bg
 # hide/unhide i3status bar
 #bindsym $mod+m bar mode toggle
 
+# Theme colors (i3)
 # Theme colors (i3)
 # class                   border  backgr. text    indic.   child_border
 #  client.focused          #ED131A #ED131A #ED131A #ED131A
@@ -318,12 +320,18 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+# bindsym XF86MonBrightnessUp exec "brightnessctl s +10%; notify-send 'Brightness up '$(expr $(brightnessctl g) / $(brightnessctl m) \* 100)%"
+# bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-; notify-send 'Brightness down '$(expr $(brightnessctl g) / $(brightnessctl m) \* 100)%"
+bindsym XF86MonBrightnessUp exec "~/scripts/brightness.py -s +10%"
+bindsym XF86MonBrightnessDown exec "~/scripts/brightness.py -s 10%-"
+# bindsym XF86MonBrightnessUp exec "brightnessctl s +10%; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-; notify-send 'brightness down'"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-server=$http_proxy
+#bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-pac-url="http://proxyconf.glb.nsn-net.net/proxy.pac"
+bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-server=10.158.100.2:8080
 bindsym $mod+F3 exec $BROWSER --force-dark-mode
 bindsym $mod+l exec --no-startup-id betterlockscreen -l
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
