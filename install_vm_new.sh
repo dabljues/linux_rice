@@ -8,7 +8,8 @@ mkdir -p ~/Media/vbox
 sudo mount -o loop /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso ~/Media/vbox > /dev/null 2>&1
 sudo sh ~/Media/vbox/VBoxLinuxAdditions.run <<< 'yes'
 sudo gpasswd -a $USER vboxsf
-sudo systemctl enable vboxservice
+sudo systemctl enable vboxadd-service
+sudo systemctl enable vboxadd
 sudo modprobe -a vboxguest vboxsf vboxvideo
 sudo umount ~/Media/vbox
 rm -rf ~/Media
