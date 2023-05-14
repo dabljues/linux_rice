@@ -330,8 +330,7 @@ bindsym XF86MonBrightnessDown exec "~/scripts/brightness.py -s 10%-"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-#bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-pac-url="http://proxyconf.glb.nsn-net.net/proxy.pac"
-bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-server=10.158.100.2:8080
+bindsym $mod+F2 exec $BROWSER --force-dark-mode
 bindsym $mod+F3 exec $BROWSER --force-dark-mode
 bindsym $mod+l exec --no-startup-id betterlockscreen -l
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
