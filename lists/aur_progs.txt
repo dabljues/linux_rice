@@ -1,4 +1,5 @@
 ttf-unifont
+ttf-dejavu
 siji-git
 polybar-git
 visual-studio-code-bin
