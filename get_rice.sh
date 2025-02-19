@@ -13,6 +13,9 @@ cp --parents .config/compton.conf $BASEDIR/dotfiles
 cp --parents .config/oh-my-zsh/oh-my-zsh.sh $BASEDIR/dotfiles
 cp --parents -r .config/X11 $BASEDIR/dotfiles
 cp --parents -r .config/rofi $BASEDIR/dotfiles
+# nushell
+[ -d $BASEDIR/dotfiles/.config/nushell ] || mkdir $BASEDIR/dotfiles/.config/nushell
+cp --parents -r .config/nushell/config.nu $BASEDIR/dotfiles
 # Zsh
 [ -d $BASEDIR/dotfiles/.config/zsh ] || mkdir $BASEDIR/dotfiles/.config/zsh
 cp --parents -r .config/zsh/.zprofile $BASEDIR/dotfiles
