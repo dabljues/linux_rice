@@ -115,6 +115,7 @@ alias ga = git add
 alias gd = git diff
 alias gs = git status
 alias gc = git commit
+alias gau = git add -u
 alias gdo = git diff origin/$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 alias gco = git checkout
 alias gcp = git cherry-pick
