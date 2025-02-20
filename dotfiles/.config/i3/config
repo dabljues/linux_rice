@@ -5,11 +5,11 @@
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
+default_border pixel 3
 default_floating_border normal
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders smart
 
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -217,7 +217,7 @@ client.background       $bg
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 20
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -226,7 +226,7 @@ gaps outer -2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+smart_gaps off
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -275,9 +275,10 @@ mode "$mode_gaps_outer" {
 # Polybar
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+# xss-lock
+exec_always --no-startup-id xss-lock -- i3lock --blur 5 --clock --indicator --date-color="00FF00" --time-color="00FF00"
 # compton
-#exec_always --no-startup-id picom
+exec_always --no-startup-id picom
 
 # Hotkeys
 
@@ -330,9 +331,11 @@ bindsym XF86MonBrightnessDown exec "~/scripts/brightness.py -s 10%-"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec $BROWSER --force-dark-mode
-bindsym $mod+F3 exec $BROWSER --force-dark-mode
-bindsym $mod+l exec --no-startup-id betterlockscreen -l
+#bindsym $mod+F2 exec $BROWSER --force-dark-mode --proxy-pac-url="http://proxyconf.glb.nsn-net.net/proxy.pac"
+bindsym $mod+F2 exec $BROWSER
+bindsym $mod+F3 exec $BROWSER --force-dark-mode --no-proxy-server
+#bindsym $mod+l exec --no-startup-id betterlockscreen -l
+bindsym $mod+l exec --no-startup-id i3lock --blur 5 --clock --indicator --date-color="00FF00" --time-color="00FF00"
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
