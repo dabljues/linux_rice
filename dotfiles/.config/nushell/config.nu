@@ -74,6 +74,8 @@ $env.LESSHISTFILE = "-"
 $env.WGETRC = $"($env.XDG_CONFIG_HOME? | default $'($env.HOME)/.config')/wget/wgetrc"
 #export DOCKER_BUILDKIT=1
 $env.DOCKER_BUILDKIT = 1
+$env.PAGER = "less"
+$env.LESS = "-FRS"
 
 ## Starship
 $env.STARSHIP_CONFIG = $"($env.HOME)/.config/starship/starship.toml"
@@ -98,6 +100,7 @@ alias chp = nu -c $"($env.EDITOR) ('~/.config/hypr/hyprland.conf' | path expand)
 alias czh = nu -c $"($env.EDITOR) ('~/.config/zsh/.zshrc' | path expand)"
 alias czp = nu -c $"($env.EDITOR) ('~/.config/zsh/.zprofile' | path expand)"
 alias cki = nu -c $"($env.EDITOR) ('~/.config/kitty/kitty.conf' | path expand)"
+alias cst = nu -c $"($env.EDITOR) ('~/.config/starship/starship.toml' | path expand)"
 alias cnu = config nu
 
 # Python
