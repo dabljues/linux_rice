@@ -104,7 +104,7 @@ alias cst = nu -c $"($env.EDITOR) ('~/.config/starship/starship.toml' | path exp
 alias cnu = config nu
 
 # Python
-alias venv = overlay use venv/bin/activate.nu
+alias venv = overlay use -r venv/bin/activate.nu
 
 # ls
 alias l = ls
@@ -118,6 +118,7 @@ alias ga = git add
 alias gd = git diff
 alias gs = git status
 alias gc = git commit
+alias gca = git commit --amend --no-edit --date=(date now)
 alias gau = git add -u
 alias gdo = git diff origin/$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 alias gco = git checkout
