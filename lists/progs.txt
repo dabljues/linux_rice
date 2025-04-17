@@ -11,3 +11,28 @@ pyenv
 # Use this and add it as a service (enable + start) to sort the mirrors
 # --sort rate
 reflector
+fzf
+
+# Cool rust stuff
+## Curl alternative (based on httpie, but faster)
+xh 
+## CLI regex generation tool
+grex
+## Faster grep
+ripgrep
+## Better tmux (batteries included, great visuals)
+zellige
+## Modern alternative to procs
+procs
+## CLI git info tool
+onefetch
+## Better sed (human readable)
+sd
+## CLI benchmark tool (alternative to time)
+hyperfine
+## Better find
+fd
+## Better directory navigation
+zoxide
+## Better man pages (tldr)
+tealdeer
