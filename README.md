@@ -11,3 +11,7 @@
   * [alternative](https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/)
 * [delta](https://github.com/dandavison/delta)
   * a better `git diff`
+* [zed](https://zed.dev/)
+  * VS Code in Rust, basically
+  * install `pyright` inside virtualenv if you want Zed to recognize packages installed in venv
+    * pyright can be installed globally, but then Zed doesn't see the packages in venv, it only sees the globally installed ones
