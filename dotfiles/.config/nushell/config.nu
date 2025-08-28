@@ -64,8 +64,12 @@ $env.GTK_PROFILE = "Arc:dark"
 $env.GTK2_RC_FILES = $"($env.XDG_CONFIG_HOME? | default $'($env.HOME)/.config')/gtk-2.0/gtkrc-2.0"
 
 ## Python
-# export PYENV_ROOT="$HOME/.pl/pyenv"
-$env.PYENV_ROOT = $"($env.HOME)/.pl/pyenv"
+
+# Instead of pyenv, use uv
+# Install uv, then:
+# * `uv python install` for python installatiopn
+# * `uv venv` for venv creation
+# * `uv pip install` for installation inside venv
 
 ## Other
 # export LESSHISTFILE="-"
@@ -81,11 +85,11 @@ $env.LESS = "-FRS"
 $env.STARSHIP_CONFIG = $"($env.HOME)/.config/starship/starship.toml"
 
 # Path
-$env.path ++= ["~/.local/bin"]
-$env.path = ($env.path | split row (char esep) | prepend $"(pyenv root)/shims")
-$env.path ++= [(yarn global bin)]
+# Probably not needed
+#$env.path ++= ["~/.local/bin"]
 $env.path ++= [$"($env.HOME)/scripts"]
-$env.path ++= [$"($env.PYENV_ROOT)/bin/"]
+
+$env.path = $env.path | uniq
 
 # Editors
 alias vim = nvim
@@ -93,6 +97,9 @@ alias vi = nvim
 
 # Misc
 alias cat = bat
+alias feh = feh --scale-down -d
+alias hl = hl --config=$"($env.HOME)/.config/hl/config.yaml"
+alias pt = parquet-tools
 
 # Config edit
 alias ci3 = nu -c $"($env.EDITOR) ('~/.config/i3/config' | path expand)"
@@ -108,6 +115,14 @@ alias venv = overlay use -r venv/bin/activate.nu
 
 # ls
 alias l = ls
+alias la = ls -a
+alias lla = ls -al
+
+# zed
+alias zed = zeditor
+
+# zellij
+alias zj = zellij
 
 # X11
 alias startx = startx $env.XINITRC
@@ -115,6 +130,7 @@ alias startx = startx $env.XINITRC
 # git
 alias chm = git checkout master
 alias ga = git add
+alias gb = git branch
 alias gd = git diff
 alias gs = git status
 alias gc = git commit
@@ -131,6 +147,9 @@ alias rbi = git rebase -i
 # k8s
 alias kl = kubectl
 alias km = minikube kubectl --
+
+# zoxide
+source ~/.config/zoxide.nu
 
 # starship
 $env.STARSHIP_SHELL = "nu"
